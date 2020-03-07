@@ -48,15 +48,8 @@ class DataGenerator(Sequence):
 			xs.append(seq)
 			ys.append(batch_y[i + j])
 
-		# xs = np.array(
-		# 	[[np.stack(resize(imread(batch_x[i + j]), self.target_size)) for j in range(self.seq_length)] for i in
-		# 	 range(self.batch_size)])
-		# print(len(batch_y))
-		# ys = np.array(
-		# 	[batch_y[k] for k in range(0, self.batch_size * self.seq_length + 1, self.seq_length)])
 		return np.array(xs), to_categorical(np.array(ys), len(self.class_map.keys()))
 
-	# return np.array([resize(imread(file_name), self.target_size) for file_name in batch_x]), np.array(batch_y)
 
 	def process_data_file(self):
 		file_metadata = pd.read_csv(self.data_dir + '/data_file.csv')
